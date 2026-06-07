@@ -15,15 +15,15 @@ public class DashboardFrame extends JFrame {
 
     private final User user;
 
-    // Discover tab
+   
     private DefaultTableModel discoverModel;
     private JTable discoverTable;
 
-    // Watchlist tab
+    
     private DefaultTableModel watchlistModel;
     private JTable watchlistTable;
 
-    // Stats tab
+   
     private StatsPanel statsPanel;
 
     public DashboardFrame(User user) {
@@ -40,7 +40,7 @@ public class DashboardFrame extends JFrame {
         add(buildTabs(), BorderLayout.CENTER);
     }
 
-    // ─── Top bar ─────────────────────────────────────────────────────────────
+  
     private JPanel buildTopBar() {
         JPanel bar = new JPanel(new BorderLayout());
         bar.setBackground(UITheme.BG_CARD);
@@ -68,7 +68,7 @@ public class DashboardFrame extends JFrame {
         return bar;
     }
 
-    // ─── Tabs ─────────────────────────────────────────────────────────────────
+   
     private JTabbedPane buildTabs() {
         JTabbedPane tabs = new JTabbedPane();
         tabs.setBackground(UITheme.BG_CARD);
@@ -80,7 +80,7 @@ public class DashboardFrame extends JFrame {
         tabs.addTab("  Add Movie", buildAddMoviePanel());
         tabs.addTab("  Stats", buildStatsPanel());
 
-        // Refresh watchlist & stats when switching tabs
+        
         tabs.addChangeListener(e -> {
             int idx = tabs.getSelectedIndex();
             if (idx == 1) {
@@ -94,13 +94,13 @@ public class DashboardFrame extends JFrame {
         return tabs;
     }
 
-    // ─── Discover Panel ───────────────────────────────────────────────────────
+  
     private JPanel buildDiscoverPanel() {
         JPanel panel = new JPanel(new BorderLayout(0, 0));
         panel.setBackground(UITheme.BG_DARK);
         panel.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
 
-        // Header
+        
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 0));
@@ -119,7 +119,7 @@ public class DashboardFrame extends JFrame {
         header.add(headerRight, BorderLayout.EAST);
         panel.add(header, BorderLayout.NORTH);
 
-        // Table
+       
         String[] cols = {"#", "Title", "Genre", "Year", "Director"};
         discoverModel = new DefaultTableModel(cols, 0) {
             @Override
@@ -130,13 +130,13 @@ public class DashboardFrame extends JFrame {
         discoverTable = new JTable(discoverModel);
         UITheme.styleTable(discoverTable);
         discoverTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        // Column widths
+       
         discoverTable.getColumnModel().getColumn(0).setMaxWidth(40);
         discoverTable.getColumnModel().getColumn(2).setPreferredWidth(90);
         discoverTable.getColumnModel().getColumn(3).setPreferredWidth(60);
         discoverTable.getColumnModel().getColumn(3).setMaxWidth(70);
 
-        // Double-click = add to watchlist
+        
         discoverTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -177,7 +177,7 @@ public class DashboardFrame extends JFrame {
                     "Please select a movie first.", "No Selection", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        // Get movie_id by re-querying (index in getAllMovies matches table row)
+        
         List<Movie> movies = MovieDAO.getAllMovies();
         Movie m = movies.get(row);
         boolean ok = WatchlistDAO.addToWatchlist(user.getUserId(), m.getMovieId());
@@ -234,13 +234,13 @@ public class DashboardFrame extends JFrame {
         }
     }
 
-    // ─── Watchlist Panel ──────────────────────────────────────────────────────
+   
     private JPanel buildWatchlistPanel() {
         JPanel panel = new JPanel(new BorderLayout(0, 0));
         panel.setBackground(UITheme.BG_DARK);
         panel.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
 
-        // Header
+       
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 0));
@@ -267,7 +267,7 @@ public class DashboardFrame extends JFrame {
         header.add(btnRow, BorderLayout.EAST);
         panel.add(header, BorderLayout.NORTH);
 
-        // Table
+      
         String[] cols = {"Title", "Genre", "Year", "Director", "Status", "Rating", "Review"};
         watchlistModel = new DefaultTableModel(cols, 0) {
             @Override
@@ -283,7 +283,7 @@ public class DashboardFrame extends JFrame {
         watchlistTable.getColumnModel().getColumn(4).setPreferredWidth(90);
         watchlistTable.getColumnModel().getColumn(5).setPreferredWidth(65);
 
-        // Double-click = mark watched
+      
         watchlistTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -372,7 +372,7 @@ public class DashboardFrame extends JFrame {
         
     }
 
-    // ─── Add Movie Panel ──────────────────────────────────────────────────────
+   
     private JPanel buildAddMoviePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(UITheme.BG_DARK);
@@ -484,7 +484,7 @@ public class DashboardFrame extends JFrame {
         return panel;
     }
 
-    // ─── Stats Panel ──────────────────────────────────────────────────────────
+    
     private JPanel buildStatsPanel() {
         statsPanel = new StatsPanel(user);
         return statsPanel;
