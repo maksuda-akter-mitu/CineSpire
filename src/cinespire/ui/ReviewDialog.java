@@ -6,9 +6,6 @@ import cinespire.model.WatchlistEntry;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Modal dialog for marking a movie as watched, giving a star rating, and writing a review.
- */
 public class ReviewDialog extends JDialog {
 
     private boolean saved = false;
@@ -24,7 +21,7 @@ public class ReviewDialog extends JDialog {
     }
 
     private void buildUI(WatchlistEntry entry) {
-        // Header
+      
         JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 16, 12));
         header.setBackground(UITheme.BG_DARK);
         JLabel title = new JLabel(entry.getTitle());
@@ -33,7 +30,7 @@ public class ReviewDialog extends JDialog {
         header.add(title); header.add(year);
         add(header, BorderLayout.NORTH);
 
-        // Form
+      
         JPanel form = new JPanel();
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
         form.setBackground(UITheme.BG_CARD);
@@ -48,7 +45,7 @@ public class ReviewDialog extends JDialog {
         cbRating.setBackground(UITheme.BG_INPUT); cbRating.setForeground(UITheme.BG_DARK);
         cbRating.setFont(UITheme.FONT_BODY); cbRating.setAlignmentX(LEFT_ALIGNMENT);
         cbRating.setMaximumSize(new Dimension(Integer.MAX_VALUE, 36));
-        // Pre-select existing rating if already reviewed
+     
         if (entry.getUserRating() > 0) cbRating.setSelectedIndex(entry.getUserRating() - 1);
 
         JLabel lReview = UITheme.bodyLabel("Your Review  (optional)");
@@ -70,7 +67,7 @@ public class ReviewDialog extends JDialog {
         form.add(spReview);
         add(form, BorderLayout.CENTER);
 
-        // Buttons
+       
         JPanel btns = new JPanel(new FlowLayout(FlowLayout.RIGHT, 16, 14));
         btns.setBackground(UITheme.BG_CARD);
         JButton btnCancel = UITheme.ghostButton("Cancel");
