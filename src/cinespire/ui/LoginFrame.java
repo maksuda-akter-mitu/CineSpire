@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame {
                 BorderFactory.createLineBorder(new Color(0x3A, 0x3A, 0x50)),
                 BorderFactory.createEmptyBorder(36, 40, 36, 40)));
 
-        // Logo / title
+       
         JLabel logo = new JLabel("  CineSpire");
         logo.setFont(UITheme.FONT_TITLE);
         logo.setForeground(UITheme.ACCENT);
@@ -44,7 +44,7 @@ public class LoginFrame extends JFrame {
         JLabel sub = UITheme.mutedLabel("Your personal cinema companion");
         sub.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Form
+      
         JLabel lUser = UITheme.bodyLabel("Username");
         lUser.setAlignmentX(Component.LEFT_ALIGNMENT);
         tfUsername.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -68,7 +68,7 @@ public class LoginFrame extends JFrame {
         btnLogin.addActionListener(this::doLogin);
         btnRegister.addActionListener(this::doRegister);
 
-        // Allow Enter key on password field to trigger login
+       
         pfPassword.addActionListener(this::doLogin);
         tfUsername.addActionListener(e -> pfPassword.requestFocus());
 
