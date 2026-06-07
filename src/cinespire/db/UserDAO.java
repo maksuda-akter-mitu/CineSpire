@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class UserDAO {
 
-    /** Returns the User on success, null if credentials are wrong. */
+   
     public static User login(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection con = DBConnection.getConnection();
@@ -24,7 +24,7 @@ public class UserDAO {
         return null;
     }
 
-    /** Returns true if registration succeeded, false if username already exists. */
+    
     public static boolean register(String username, String password) {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (Connection con = DBConnection.getConnection();
@@ -34,7 +34,7 @@ public class UserDAO {
             ps.executeUpdate();
             return true;
         } catch (SQLIntegrityConstraintViolationException e) {
-            return false; // duplicate username
+            return false; 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
