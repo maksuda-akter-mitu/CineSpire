@@ -7,16 +7,16 @@ import java.util.List;
 
 public class WatchlistDAO {
 
-    /** Add a movie to a user's watchlist (status = 'To Watch'). */
+   
     public static boolean addToWatchlist(int userId, int movieId) {
-        // Prevent duplicates
+     
         String check = "SELECT 1 FROM watchlists WHERE user_id=? AND movie_id=?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(check)) {
             ps.setInt(1, userId);
             ps.setInt(2, movieId);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) return false; // already in watchlist
+            if (rs.next()) return false; 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -35,7 +35,6 @@ public class WatchlistDAO {
         }
     }
 
-    /** Get all watchlist entries for a user (joined with movie data). */
     public static List<WatchlistEntry> getWatchlist(int userId) {
         List<WatchlistEntry> list = new ArrayList<>();
         String sql = """
@@ -70,8 +69,7 @@ public class WatchlistDAO {
         }
         return list;
     }
-
-    /** Mark a movie as watched, save rating and review. */
+   
     public static boolean markWatched(int watchlistId, int rating, String review) {
         String sql = "UPDATE watchlists SET status='Watched', user_rating=?, user_review=?, watch_date=NOW() WHERE watchlist_id=?";
         try (Connection con = DBConnection.getConnection();
@@ -87,7 +85,6 @@ public class WatchlistDAO {
         }
     }
 
-    /** Remove an entry from the watchlist. */
     public static boolean removeFromWatchlist(int watchlistId) {
         String sql = "DELETE FROM watchlists WHERE watchlist_id=?";
         try (Connection con = DBConnection.getConnection();
@@ -100,8 +97,7 @@ public class WatchlistDAO {
             return false;
         }
     }
-
-    /** Stats: total watched count for a user. */
+ 
     public static int countWatched(int userId) {
         String sql = "SELECT COUNT(*) FROM watchlists WHERE status='Watched' AND user_id=?";
         try (Connection con = DBConnection.getConnection();
@@ -115,8 +111,7 @@ public class WatchlistDAO {
         return 0;
     }
 
-    /** Stats: total "to watch" count for a user. */
-    public static int countToWatch(int userId) {
+   public static int countToWatch(int userId) {
         String sql = "SELECT COUNT(*) FROM watchlists WHERE status='To Watch' AND user_id=?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -129,7 +124,6 @@ public class WatchlistDAO {
         return 0;
     }
 
-    /** Stats: top-rated movies for a user (rating = 5). */
     public static List<String> getTopRatedMovies(int userId) {
         List<String> titles = new ArrayList<>();
         String sql = """
@@ -149,7 +143,6 @@ public class WatchlistDAO {
         return titles;
     }
 
-    /** Stats: average rating given by a user. */
     public static double getAverageRating(int userId) {
         String sql = "SELECT AVG(user_rating) FROM watchlists WHERE user_id=? AND user_rating > 0";
         try (Connection con = DBConnection.getConnection();
