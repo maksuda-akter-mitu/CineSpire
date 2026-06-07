@@ -11,7 +11,7 @@ public class StatsPanel extends JPanel {
 
     private final User user;
 
-    // Live stat labels (refreshed via refresh())
+   
     private final JLabel lblWatched  = makeStatNum("—");
     private final JLabel lblToWatch  = makeStatNum("—");
     private final JLabel lblAvgRating = makeStatNum("—");
@@ -29,7 +29,7 @@ public class StatsPanel extends JPanel {
         content.setBackground(UITheme.BG_DARK);
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        // ── Counter cards row ────────────────────────────────────
+       
         JPanel cards = new JPanel(new GridLayout(1, 3, 16, 0));
         cards.setBackground(UITheme.BG_DARK);
         cards.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
@@ -39,7 +39,7 @@ public class StatsPanel extends JPanel {
         content.add(cards);
         content.add(Box.createVerticalStrut(24));
 
-        // ── Top-rated section ────────────────────────────────────
+       
         JLabel lTop = UITheme.headerLabel("  Your 5-Star Picks");
         lTop.setAlignmentX(LEFT_ALIGNMENT);
         content.add(lTop);
@@ -58,7 +58,7 @@ public class StatsPanel extends JPanel {
         spTop.setPreferredSize(new Dimension(0, 160));
         content.add(spTop);
 
-        // ── Refresh button ───────────────────────────────────────
+       
         content.add(Box.createVerticalStrut(16));
         JButton btnRefresh = UITheme.ghostButton("↻  Refresh Stats");
         btnRefresh.setAlignmentX(LEFT_ALIGNMENT);
@@ -96,7 +96,7 @@ public class StatsPanel extends JPanel {
         topRatedBox.repaint();
     }
 
-    // ── Helpers ─────────────────────────────────────────────────
+   
 
     private JPanel statCard(String title, JLabel numLabel, Color accent) {
         JPanel p = new JPanel();
