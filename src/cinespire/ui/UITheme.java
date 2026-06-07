@@ -6,16 +6,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-/**
- * CineSpire visual theme — dark cinema palette with amber accents.
- */
+
 public class UITheme {
 
-    // ── Palette ────────────────────────────────────────────────
+    
     public static final Color BG_DARK     = new Color(0x0F, 0x0F, 0x14);
     public static final Color BG_CARD     = new Color(0x1A, 0x1A, 0x24);
     public static final Color BG_INPUT    = new Color(0x22, 0x22, 0x30);
-    public static final Color ACCENT      = new Color(0xF5, 0xA6, 0x23);   // amber
+    public static final Color ACCENT      = new Color(0xF5, 0xA6, 0x23);  
     public static final Color ACCENT_DIM  = new Color(0xA8, 0x70, 0x10);
     public static final Color TEXT_MAIN   = new Color(0xF0, 0xEE, 0xE8);
     public static final Color TEXT_MUTED  = new Color(0x88, 0x88, 0x99);
@@ -23,7 +21,7 @@ public class UITheme {
     public static final Color DANGER      = new Color(0xE8, 0x4A, 0x5B);
     public static final Color ROW_ALT     = new Color(0x16, 0x16, 0x20);
 
-    // ── Fonts ──────────────────────────────────────────────────
+   
     public static final Font FONT_TITLE   = new Font("Georgia", Font.BOLD, 26);
     public static final Font FONT_HEADING = new Font("Georgia", Font.BOLD, 16);
     public static final Font FONT_BODY    = new Font("Segoe UI", Font.PLAIN, 13);
@@ -31,7 +29,7 @@ public class UITheme {
     public static final Font FONT_SMALL   = new Font("Segoe UI", Font.PLAIN, 11);
     public static final Font FONT_BTN     = new Font("Segoe UI", Font.BOLD,  13);
 
-    // ── Global L&F bootstrap ──────────────────────────────────
+   
     public static void apply() {
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch (Exception ignored) {}
@@ -70,7 +68,6 @@ public class UITheme {
         UIManager.put("TableHeader.foreground",    ACCENT);
     }
 
-    // ── Factory helpers ────────────────────────────────────────
 
     public static JButton accentButton(String text) {
         JButton b = new JButton(text) {
@@ -216,7 +213,7 @@ public class UITheme {
         header.setPreferredSize(new Dimension(0, 36));
         header.setReorderingAllowed(false);
 
-        // Alternating row renderer
+        
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable t, Object v,
